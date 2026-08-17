@@ -1,0 +1,45 @@
+# Struktur-Konfiguration (keine Secrets — die liegen in .env)
+
+timezone: Europe/Berlin
+
+# Wie viele Tage vor dem Raid-Termin der Anmelde-Post erscheint
+post_lead_days: 7
+
+# Auto-Refresh-Intervall der Anmelde-Embeds (Minuten)
+refresh_minutes: 10
+
+guild_name: Dagor
+
+# Optional: Discord-Server-ID. Wenn gesetzt, werden Slash-Commands nur für
+# diesen Server registriert (sofort verfügbar statt bis zu 1h global).
+guild_id: null
+
+db_path: data/wowhelper.db
+
+# Optional: Klassen-Emojis für das Embed. Key = Klassenname wie von wowaudit
+# geliefert, Wert = Emoji (Unicode oder Custom-Emoji "<:name:id>").
+# Leer lassen => es wird nur der Status-Punkt angezeigt.
+class_emojis: {}
+#  Death Knight: "<:dk:123456789>"
+#  Druid: "<:druid:123456789>"
+
+teams:
+  raid1:
+    label: "Raid 1"
+    wowaudit_key_env: RAID1_WOWAUDIT_KEY
+    # Rolle, die beim Anmelde-Post gepingt wird (null = kein Ping)
+    mention_role_id: null
+    # Rolle, die Ankündigungen bearbeiten darf (null = nur Manage-Server-Recht)
+    raidlead_role_id: null
+    # Wochentag -> Channel-ID des Anmelde-Channels
+    channels:
+      thursday: 0    # ID von #do-raidanmeldung
+      sunday: 0      # ID von #so-raidanmeldung
+  raid2:
+    label: "Raid 2"
+    wowaudit_key_env: RAID2_WOWAUDIT_KEY
+    mention_role_id: null
+    raidlead_role_id: null
+    channels:
+      thursday: 0
+      sunday: 0
