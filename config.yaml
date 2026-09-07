@@ -16,6 +16,13 @@ guild_id: null
 
 db_path: data/wowhelper.db
 
+# Log-Datei (rotiert automatisch bei 5 MB, 5 Backups werden behalten).
+# Liegt unter data/ und bleibt damit auch im Docker-Volume erhalten.
+log_path: data/logs/wowhelper.log
+
+# Log-Level für Konsole + Datei: DEBUG, INFO, WARNING, ERROR
+log_level: INFO
+
 # Optional: Klassen-Emojis für das Embed. Key = Klassenname wie von wowaudit
 # geliefert, Wert = Emoji (Unicode oder Custom-Emoji "<:name:id>").
 # Leer lassen => es wird nur der Status-Punkt angezeigt.
