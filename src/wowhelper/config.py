@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -59,8 +60,18 @@ class Settings(BaseModel):
     guild_name: str = ""
     guild_id: int | None = None
     db_path: str = "data/wowhelper.db"
+    log_path: str = "data/logs/wowhelper.log"
+    log_level: str = "INFO"
     class_emojis: dict[str, str] = Field(default_factory=dict)
     teams: dict[str, TeamConfig]
+
+    @field_validator("log_level")
+    @classmethod
+    def _known_level(cls, v: str) -> str:
+        level = v.upper()
+        if level not in logging.getLevelNamesMapping():
+            raise ValueError(f"Unbekanntes log_level: {v!r} (z.B. DEBUG, INFO, WARNING)")
+        return level
 
     @property
     def tz(self) -> ZoneInfo:
